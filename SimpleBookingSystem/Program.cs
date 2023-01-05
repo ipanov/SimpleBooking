@@ -13,7 +13,6 @@ namespace SimpleBookingSystem
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Simple Booking System");
             CreateHostBuilder(args).Build().Run();
         }
 

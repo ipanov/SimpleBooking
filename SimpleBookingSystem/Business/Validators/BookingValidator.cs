@@ -3,15 +3,11 @@ using Microsoft.Extensions.Logging;
 using SimpleBookingSystem.Business.Models;
 using SimpleBookingSystem.Business.Services;
 using SimpleBookingSystem.DataAccessLayer;
-using SimpleBookingSystem.Entities;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
-
 
 namespace SimpleBookingSystem.Business.Validators
 {
-
     public class BookingValidator : IBookingValidator
     {
         private readonly SimpleBookingSystemDbContext _context;

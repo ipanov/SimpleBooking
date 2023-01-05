@@ -14,9 +14,9 @@ namespace SimpleBookingSystem.Controllers
     public class BookingsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<ResourcesController> _logger;
+        private readonly ILogger<BookingsController> _logger;
 
-        public BookingsController(IMediator mediator, ILogger<ResourcesController> logger)
+        public BookingsController(IMediator mediator, ILogger<BookingsController> logger)
         {
             _mediator = mediator;
             _logger = logger;

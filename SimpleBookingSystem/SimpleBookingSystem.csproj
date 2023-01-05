@@ -7,6 +7,7 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <StartupObject>SimpleBookingSystem.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,22 +21,32 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.Text.Json" Version="7.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+    <PackageReference Include="Moq" Version="4.18.4" />
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="Business\Queries\**" />
     <Compile Remove="ClientApp\src\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Business\Queries\**" />
     <Content Remove="ClientApp\src\**" />
+    <EmbeddedResource Remove="Business\Queries\**" />
     <EmbeddedResource Remove="ClientApp\src\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="Business\Queries\**" />
     <None Remove="ClientApp\src\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Business\Queries\" />
     <Folder Include="ClientApp\" />
   </ItemGroup>
 
