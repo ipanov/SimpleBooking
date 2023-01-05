@@ -20,7 +20,7 @@ function addMinutes(numOfMinutes, date) {
 }
 
 function Booking(props) {
-    const { isOpen, handleClose, selectedResource } = props
+    const { isOpen, handleClose, handleResult, selectedResource } = props
     const [error, setError] = useState(null);
     const [dateFrom, setDateFrom] = useState(addHours(2,roundToNearestHour(new Date())));
     const [dateTo, setDateTo] = useState(addMinutes(45, addHours(2,roundToNearestHour(new Date()))));
@@ -40,10 +40,10 @@ function Booking(props) {
             resourceId: selectedResource.id
         })
         .then(function (response) {
-            console.log(response);
+            handleResult();
         })
         .catch(function (error) {
-            console.log(error);
+            handleResult(error);
         });
     };
 
@@ -56,6 +56,7 @@ function Booking(props) {
     }
     
     return (
+        <div>
             <Modal isOpen={isOpen && (selectedResource !== null)} toggle={handleClose}>
                 <ModalHeader toggle={handleClose} close={closeBtn}>
                     Booking {selectedResource.name}
@@ -86,6 +87,8 @@ function Booking(props) {
                 </Button>
                 </ModalFooter>
             </Modal>
+        </div>
+
         );
 }
 

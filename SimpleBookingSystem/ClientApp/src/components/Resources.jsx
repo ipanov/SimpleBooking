@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 import Booking from './Booking';
 
 function Resources() {
@@ -28,6 +30,21 @@ function Resources() {
     function handleBooking(e, resource) {
         setSelectedResource(resource);
         setShowBooking(true);
+    }
+
+    function handleResult(error){
+        if (error){
+            handleClose()
+            toast.error(error.response.data, {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+        else{
+            handleClose()
+            toast.success('Success', {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
     }
 
     function handleClose(){
@@ -67,9 +84,10 @@ function Resources() {
             <div>
                 <p>Resources</p>
                 {renderResourcesTable()}
-                {showBooking &&
-                    <Booking isOpen={showBooking} handleClose={handleClose} selectedResource={selectedResource}></Booking>
+                {showBooking && selectedResource &&
+                    <Booking isOpen={showBooking} handleClose={handleClose} handleResult={handleResult} selectedResource={selectedResource}></Booking>
                 }
+                <ToastContainer />
             </div>
         );
     }
