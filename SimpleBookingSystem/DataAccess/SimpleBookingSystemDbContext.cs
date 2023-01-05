@@ -23,6 +23,8 @@ namespace SimpleBookingSystem.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Resource>().HasMany(b => b.Bookings).WithOne();  
+            modelBuilder.Entity<Booking>().HasOne(b => b.Resource).WithMany(r => r.Bookings).HasForeignKey(b => b.ResourceId);
             modelBuilder.Entity<Resource>().HasData(CreateResources());
             modelBuilder.Entity<Booking>().HasData(CreateBookings());
         }

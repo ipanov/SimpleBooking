@@ -15,6 +15,6 @@ namespace SimpleBookingSystem.Entities
         public string Name { get; set; }
         [Required]
         public int Quantity { get; set; }
-        public virtual ICollection<Booking> Bookings { get; set; }
+        public List<Booking> Bookings { get; set; }
     }
 }

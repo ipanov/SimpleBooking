@@ -24,7 +24,7 @@ function Booking(props) {
     const [error, setError] = useState(null);
     const [dateFrom, setDateFrom] = useState(addHours(2,roundToNearestHour(new Date())));
     const [dateTo, setDateTo] = useState(addMinutes(45, addHours(2,roundToNearestHour(new Date()))));
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(selectedResource.quantity);
 
     const closeBtn = (
       <button className="close" onClick={handleClose} type="button">
@@ -32,16 +32,31 @@ function Booking(props) {
       </button>
     );
 
-    function handleSubmit(e, resource) {
-            
+    function postBooking() {
+        axios.post('api/bookings', {
+            dateFrom: dateFrom,
+            dateTo: dateTo,
+            bookedQuantity: quantity,
+            resourceId: selectedResource.id
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    };
+
+    function handleSubmit() {
+        postBooking();
     }
 
-    function handleQuantityChange(e){
-        setQuantity(e.value);
+    function handleQuantityChange(event){
+        setQuantity(event.target.value);
     }
     
     return (
-            <Modal isOpen={isOpen && selectedResource} toggle={handleClose}>
+            <Modal isOpen={isOpen && (selectedResource !== null)} toggle={handleClose}>
                 <ModalHeader toggle={handleClose} close={closeBtn}>
                     Booking {selectedResource.name}
                 </ModalHeader>

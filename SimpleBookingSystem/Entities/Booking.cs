@@ -17,6 +17,6 @@ namespace SimpleBookingSystem.Entities
         public int BookedQuantity { get; set; }
         [ForeignKey("resource")]
         public int ResourceId { get; set; }
-        public virtual Resource Resource { get; set; }
+        public  Resource Resource { get; set; }
     }
 }
