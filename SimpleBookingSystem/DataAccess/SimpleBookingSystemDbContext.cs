@@ -11,8 +11,8 @@ namespace SimpleBookingSystem.DataAccess
     public class SimpleBookingSystemDbContext : DbContext
     {
         public SimpleBookingSystemDbContext(DbContextOptions options)
-            : base(options) 
-        { 
+            : base(options)
+        {
 
         }
 
@@ -20,13 +20,19 @@ namespace SimpleBookingSystem.DataAccess
 
         public DbSet<Booking> Bookings { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Resource>().HasMany(b => b.Bookings).WithOne();  
+            modelBuilder.Entity<Resource>().HasMany(b => b.Bookings).WithOne();
             modelBuilder.Entity<Booking>().HasOne(b => b.Resource).WithMany(r => r.Bookings).HasForeignKey(b => b.ResourceId);
             modelBuilder.Entity<Resource>().HasData(CreateResources());
             modelBuilder.Entity<Booking>().HasData(CreateBookings());
+            modelBuilder.Entity<Resource>()
+               .Property(p => p.Id)
+               .ValueGeneratedOnAdd();
+            modelBuilder.Entity<Booking>()
+             .Property(p => p.Id)
+             .ValueGeneratedOnAdd();
         }
 
         private static IEnumerable<Booking> CreateBookings()

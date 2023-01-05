@@ -48,7 +48,6 @@ namespace SimpleBookingSystem.Controllers
 
             _context.Bookings.Add(new Booking()
             {
-                Id = _context.Bookings.Max(b => b.Id) + 1,
                 DateFrom = booking.DateFrom,
                 DateTo = booking.DateTo,
                 BookedQuantity = booking.BookedQuantity,
