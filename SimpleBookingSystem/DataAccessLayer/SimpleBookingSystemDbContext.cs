@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 using System.Reflection.Metadata;
 
-namespace SimpleBookingSystem.DataAccess
+namespace SimpleBookingSystem.DataAccessLayer
 {
     public class SimpleBookingSystemDbContext : DbContext
     {

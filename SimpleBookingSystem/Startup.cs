@@ -1,12 +1,18 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SimpleBookingSystem.DataAccess;
+using SimpleBookingSystem.DataAccessLayer;
+using MediatR;
+using System.Reflection;
+using SimpleBookingSystem.Business.Handlers;
+using SimpleBookingSystem.Business.Commands;
+using SimpleBookingSystem.Business.Validators;
+using SimpleBookingSystem.Business.Services;
+using SimpleBookingSystem.Business.Emailer;
 
 namespace SimpleBookingSystem
 {
@@ -23,7 +29,12 @@ namespace SimpleBookingSystem
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllersWithViews();
+            services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNameCaseInsensitive = true);
+                services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddScoped<IRequestHandler<SaveBookingCommand, bool>, SaveBookingCommandHandler>();
+            services.AddScoped<IBookingValidator, BookingValidator>();
+            services.AddTransient<IBookingService, BookingService>();
+            services.AddTransient<IResourcesService, ResourcesService>();
 
             services.AddDbContext<SimpleBookingSystemDbContext>(
                 options => options.UseSqlite("name=ConnectionStrings:SimpleBookingSystemDbConnection"));

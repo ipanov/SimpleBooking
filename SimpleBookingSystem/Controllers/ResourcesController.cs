@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SimpleBookingSystem.DataAccess;
+using SimpleBookingSystem.DataAccessLayer;
 using SimpleBookingSystem.Entities;
 using System.Collections.Generic;
 using System.Linq;

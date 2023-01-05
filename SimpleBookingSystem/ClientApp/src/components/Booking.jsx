@@ -34,11 +34,13 @@ function Booking(props) {
 
     function postBooking() {
         axios.post('api/bookings', {
-            dateFrom: dateFrom,
-            dateTo: dateTo,
-            bookedQuantity: Number(quantity),
-            resourceId: selectedResource.id
-        })
+            createdByUserId: 1,
+            bookingData: {
+                dateFrom: dateFrom,
+                dateTo: dateTo,
+                bookedQuantity: Number(quantity),
+                resourceId: selectedResource.id
+            }})
         .then(function (response) {
             handleResult();
         })
