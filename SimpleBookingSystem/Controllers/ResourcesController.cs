@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 namespace SimpleBookingSystem.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class ResourceController : ControllerBase
+    [Route("api/[controller]")]
+    public class ResourcesController : ControllerBase
     {
         private readonly SimpleBookingSystemDbContext _context;
-        private readonly ILogger<ResourceController> _logger;
+        private readonly ILogger<ResourcesController> _logger;
 
-        public ResourceController(ILogger<ResourceController> logger, SimpleBookingSystemDbContext context)
+        public ResourcesController(ILogger<ResourcesController> logger, SimpleBookingSystemDbContext context)
         {
             _context = context;
             _logger = logger;
