@@ -30,7 +30,8 @@ namespace SimpleBookingSystem
         {
 
             services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNameCaseInsensitive = true);
-                services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddSwaggerGen();
+            services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddScoped<IRequestHandler<SaveBookingCommand, bool>, SaveBookingCommandHandler>();
             services.AddScoped<IBookingValidator, BookingValidator>();
             services.AddTransient<IBookingService, BookingService>();
@@ -60,6 +61,8 @@ namespace SimpleBookingSystem
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
             else
             {
