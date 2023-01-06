@@ -22,9 +22,9 @@ The application is composed of:
 
 # React SPA
 
-There is no need to start the React app separately, the bootsraping in Startup.cs alredy starts the React development server for you :-)
+There is no need to start the React app separately, the bootstraping in Startup.cs alredy starts the React development server for you :-)
 
-If you wish to do so (ex. VS Code or from cmd), make sure to make appropriate adjustment to CORS settings on the API in the Startup class, otherwise you will not react the API !
+If you wish to do so (ex. VS Code or from cmd), make sure to make appropriate adjustment to CORS settings on the API in the Startup class, otherwise you will not reach the API !
 
 # ASP. NET Core Web API
 
