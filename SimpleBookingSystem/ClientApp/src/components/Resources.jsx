@@ -4,6 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import Booking from './Booking';
 
+import './Resources.css';
+ 
+
 function Resources() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
@@ -54,11 +57,11 @@ function Resources() {
 
     function renderResourcesTable() {
         return (
-            <table className='table table-striped'>
+            <table>
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
+                        <th style={{width: '70%', textAlign: 'left'}}>Name</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -66,8 +69,8 @@ function Resources() {
                     {resources.map((resource) =>
                         <tr key={resource.id}>
                             <td>{resource.id}</td>
-                            <td>{resource.name}</td>
-                            <td><button onClick={(e) => handleBooking(e, resource)}>book here</button></td>
+                            <td style={{textAlign: 'left'}}>{resource.name}</td>
+                            <td onClick={(e) => handleBooking(e, resource)}>book here</td>
                         </tr>
                     )}
                 </tbody>
@@ -81,8 +84,8 @@ function Resources() {
         return <div>Loading...</div>;
     } else {
         return (
-            <div>
-                <p>Resources</p>
+            <div style={{padding: '30px'}}>
+                <p style={{textAlign: 'left', marginBottom: '0px'}}>Resources</p>
                 {renderResourcesTable()}
                 {showBooking && selectedResource &&
                     <Booking isOpen={showBooking} handleClose={handleClose} handleResult={handleResult} selectedResource={selectedResource}></Booking>
